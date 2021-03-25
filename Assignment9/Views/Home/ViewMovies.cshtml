@@ -1,0 +1,62 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    ViewBag.Title = "View Movies";
+}
+
+
+@model IEnumerable<MovieList>
+
+
+    <div class="text-center">
+        <table>
+            
+            <thead>
+                <tr>
+                    <th>Category</th>
+                    <th>Title</th>
+                    <th>Year</th>
+                    <th>Director</th>
+                    <th>Rating</th>
+                    <th>Edited</th>
+                    <th>Lent To</th>
+                    <th>Notes</th>
+                    <th></th>
+                    <th></th>
+                </tr>
+            </thead>
+
+            <tbody>
+                @foreach (MovieList movie in Model)
+                {
+                    <tr>
+                        <td>@movie.Category</td>
+                        <td>@movie.Title</td>
+                        <td>@movie.Year</td>
+                        <td>@movie.Director</td>
+                        <td>@movie.Rating</td>
+                        <td>@movie.Edited</td>
+                        <td>@movie.LentTo</td>
+                        <td>@movie.Notes</td>
+
+                        <td>
+                            <form method="post" asp-action="EditMovie">
+                                <input type="hidden" name="movieid" value="@movie.MovieId" />
+                                <button type="submit">Edit</button>
+                            </form>
+                        </td>
+
+                        <td>
+                            <form method="post" asp-action="DeleteMovie">
+                                <input type="hidden" name="movieid" value="@movie.MovieId" />
+                                <button type="submit">Delete</button>
+                            </form>
+                        </td>
+
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
